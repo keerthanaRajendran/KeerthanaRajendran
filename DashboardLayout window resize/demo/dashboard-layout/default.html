@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <link href="../../node_modules/@syncfusion/ej2-base/styles/material.css" rel="stylesheet" />
+    <link href="../../styles/dashboard-layout/material.css" rel="stylesheet" />
+    <script data-main="default" src="../../node_modules/requirejs/require.js"></script>
+    <script>
+         require.config({
+            packages: [{
+                name: '@syncfusion/ej2-base',
+                location: '../../node_modules/@syncfusion/ej2-base/dist/',
+                main: 'ej2-base.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-buttons',
+                location: '../../node_modules/@syncfusion/ej2-buttons/dist/',
+                main: 'ej2-buttons.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-calendars',
+                location: '../../node_modules/@syncfusion/ej2-calendars/dist/',
+                main: 'ej2-calendars.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-popups',
+                location: '../../node_modules/@syncfusion/ej2-popups/dist/',
+                main: 'ej2-popups.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-charts',
+                location: '../../node_modules/@syncfusion/ej2-charts/dist/',
+                main: 'ej2-charts.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-data',
+                location: '../../node_modules/@syncfusion/ej2-data/dist/',
+                main: 'ej2-data.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-splitbuttons',
+                location: '../../node_modules/@syncfusion/ej2-splitbuttons/dist/',
+                main: 'ej2-splitbuttons.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-svg-base',
+                location: '../../node_modules/@syncfusion/ej2-svg-base/dist/',
+                main: 'ej2-svg-base.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-navigations',
+                location: '../../node_modules/@syncfusion/ej2-navigations/dist/',
+                main: 'ej2-navigations.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-compression',
+                location: '../../node_modules/@syncfusion/ej2-compression/dist/',
+                main: 'ej2-compression.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-lists',
+                location: '../../node_modules/@syncfusion/ej2-lists/dist/',
+                main: 'ej2-lists.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-inputs',
+                location: '../../node_modules/@syncfusion/ej2-inputs/dist/',
+                main: 'ej2-inputs.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-file-utils',
+                location: '../../node_modules/@syncfusion/ej2-file-utils/dist/',
+                main: 'ej2-file-utils.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-pdf-export',
+                location: '../../node_modules/@syncfusion/ej2-pdf-export/dist/',
+                main: 'ej2-pdf-export.umd.min.js'
+            },
+        ]
+        });
+    </script>
+ 
+</head>
+
+
+<body>
+ <div class="control-section">
+     <h2>Chart inside panels. Resize window below mediaquery(600). Panels should not overlap</h2>
+        <div>
+            <div style="width:100%;height: 30px">
+                <button id="togglebtn" style="float:right;width: 75px;">Edit</button>
+            </div>
+    
+            <div style="padding:5px;text-align: end;">
+                <div class="add-widget-button e-control e-btn e-lib" id="dialogBtn">
+                    Add New Widget
+                </div>
+            </div>
+        </div>
+    
+        <div id="defaultLayout">
+        </div>
+        <div id="dialogcontent">
+            <div>
+                <div id="linetemplate">
+                    <p class="dialog-text">Linechart (1x1) </p>
+                </div>
+                <div id="pietemplate">
+                    <p class="dialog-text">Piechart (1x1) </p>
+    
+                </div>
+                <div id="splinetemplate">
+                    <p class="dialog-text">Splinechart (2x1) </p>
+    
+                </div>
+            </div>
+        </div>
+        <div id="headerTemplate">
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+        </div>
+        <div id="content"></div>
+    </div>
+    
+    <div id="modalDialog"></div>
+    <script id="bodycontent" type="template">
+        <div class="panel-content">
+            Content Area
+        </div>
+    </script>
+    <script id="headercontent" type="template">
+        <div>
+            <div class="header-border"></div>
+            <span id="close" class="e-template-icon e-clear-icon"></span>
+            <!-- <span class="e-template-icon menu default"></span> -->
+        </div>
+    </script>
+
+</body>
+  <style>
+        #dialogBtn {
+            display: none;
+        }
+    
+        .e-btn,
+        .e-css.e-btn {
+            display: block;
+        }
+    
+        .dialog-text {
+            height: 35px;
+            border: 1px solid #80808029;
+            vertical-align: middle;
+            line-height: 35px;
+            border-radius: 4px;
+            padding-left: 12px;
+            margin-bottom: 5%;
+            cursor: pointer;
+        }
+    
+        @media (max-width: 650px) {
+            #togglebtn {
+                display: none;
+            }
+        }
+    
+        .add-widget-button {
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+    
+        .e-dashboardlayout.e-control .e-panel:hover span {
+            display: block;
+        }
+    
+        .e-dashboardlayout.e-control .e-panel .e-panel-container .e-panel-header {
+            padding: 10px;
+            border-bottom: 2px solid #e6e9ed !important;
+            height: 35px;
+            margin: 0 15px 0 15px;
+        }
+    
+        .sb-demo-section .container-fluid {
+            background: #E5E5E5;
+        }
+    
+        .e-panel-content {
+            height: calc(100% - 35px) !important;
+            overflow: hidden;
+            width: 100%;
+        }
+    
+        .e-dashboardlayout.e-control .e-panel,
+        .e-dashboardlayout.e-control .e-panel:hover,
+        .e-dashboardlayout.e-control .e-panel:active {
+            border: 1px solid #bbb;
+        }
+    
+        .e-dialog .e-dlg-header-content {
+            border-bottom: none;
+            padding: 18px 18px 18px 20px;
+        }
+    
+        .edit::before {
+            content: '\e501';
+            font-family: 'e-sb-icons';
+            /* color: #e3165b; */
+            margin-left: -7px;
+            vertical-align: middle;
+        }
+    
+        .save::before {
+            content: '\e500';
+            font-family: 'e-sb-icons';
+            /* color: #e3165b; */
+            margin-left: -7px;
+            vertical-align: middle;
+        }
+    
+    
+        /* custom code start*/
+        @font-face {
+            font-family: 'e-sb-icons';
+            src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAAKAIAAAwAgT1MvMjttR/MAAAEoAAAAVmNtYXDlEOVaAAABjAAAADhnbHlmAM1kuQAAAcwAAAD8aGVhZBRipc8AAADQAAAANmhoZWEIUQQEAAAArAAAACRobXR4DAAAAAAAAYAAAAAMbG9jYQA6AH4AAAHEAAAACG1heHABEQA4AAABCAAAACBuYW1lWD3y/QAAAsgAAAIlcG9zdNvk7cwAAATwAAAANQABAAAEAAAAAFwEAAAAAAAD9AABAAAAAAAAAAAAAAAAAAAAAwABAAAAAQAApr5cCV8PPPUACwQAAAAAANioMG8AAAAA2KgwbwAAAAAD9AP0AAAACAACAAAAAAAAAAEAAAADACwABAAAAAAAAgAAAAoACgAAAP8AAAAAAAAAAQQAAZAABQAAAokCzAAAAI8CiQLMAAAB6wAyAQgAAAIABQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUGZFZABA5QDlAQQAAAAAXAQAAAAAAAABAAAAAAAABAAAAAQAAAAEAAAAAAAAAgAAAAMAAAAUAAMAAQAAABQABAAkAAAABAAEAAEAAOUB//8AAOUA//8AAAABAAQAAAABAAIAAAAAADoAfgAEAAAAAAP0A/MAAwALABkAIwAAAREhEQEVMzUzFSE1IxEhETMVMxEjESERIxEjERUhESM1IzUhAx79xAEeR0j+m0gB9I9HR/02SEcD6EdI/KcBcf7iAR4CPI+P19f+4gEeSPzuAWb+mgNa/KZHA1lIRwAAAAMAAAAAA/QD9AADAAgAKwAACQEnCQEDJQEnNwcXPwc1Lw8PBgLH/ko2Abb9uT4BGQJC2m0/2z8HBgUFAwMCAQIEBQcICQoLDA0NDw8PEA0NDQwLCwsCkf5KNgG2/l7+5z4CQ9puP9s/CgsLCwwNDQ0QDw8PDQ0MCwoJCAcFBAIBAQEDAwUFBgAAABIA3gABAAAAAAAAAAEAAAABAAAAAAABAAcAAQABAAAAAAACAAcACAABAAAAAAADAAcADwABAAAAAAAEAAcAFgABAAAAAAAFAAsAHQABAAAAAAAGAAcAKAABAAAAAAAKACwALwABAAAAAAALABIAWwADAAEECQAAAAIAbQADAAEECQABAA4AbwADAAEECQACAA4AfQADAAEECQADAA4AiwADAAEECQAEAA4AmQADAAEECQAFABYApwADAAEECQAGAA4AvQADAAEECQAKAFgAywADAAEECQALACQBIyBlai1pY29uUmVndWxhcmVqLWljb25lai1pY29uVmVyc2lvbiAxLjBlai1pY29uRm9udCBnZW5lcmF0ZWQgdXNpbmcgU3luY2Z1c2lvbiBNZXRybyBTdHVkaW93d3cuc3luY2Z1c2lvbi5jb20AIABlAGoALQBpAGMAbwBuAFIAZQBnAHUAbABhAHIAZQBqAC0AaQBjAG8AbgBlAGoALQBpAGMAbwBuAFYAZQByAHMAaQBvAG4AIAAxAC4AMABlAGoALQBpAGMAbwBuAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAHUAcwBpAG4AZwAgAFMAeQBuAGMAZgB1AHMAaQBvAG4AIABNAGUAdAByAG8AIABTAHQAdQBkAGkAbwB3AHcAdwAuAHMAeQBuAGMAZgB1AHMAaQBvAG4ALgBjAG8AbQAAAAACAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBAgEDAQQABHNhdmUEZWRpdAAAAAAA) format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    
+        [class^="sf-icon-"],
+        [class*=" sf-icon-"] {
+            font-family: 'e-sb-icons' !important;
+            speak: none;
+            font-size: 55px;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>   
+</html>
