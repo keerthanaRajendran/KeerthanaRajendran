@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../node_modules/@syncfusion/ej2-base/styles/material.css" rel="stylesheet" />
+    <link href="../../styles/dashboard-layout/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-base/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-buttons/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-calendars/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-inputs/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-schedule/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-popups/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-lists/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-navigations/styles/material.css" rel="stylesheet" />
+    <link href="../../node_modules/@syncfusion/ej2-grids/styles/material.css" rel="stylesheet" />
+    <script data-main="demo" src="../../node_modules/requirejs/require.js"></script>
+    <script>
+        require.config({
+            packages: [{
+                name: '@syncfusion/ej2-base',
+                location: '../../node_modules/@syncfusion/ej2-base/dist/',
+                main: 'ej2-base.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-data',
+                location: '../../node_modules/@syncfusion/ej2-data/dist/',
+                main: 'ej2-data.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-lists',
+                location: '../../node_modules/@syncfusion/ej2-lists/dist/',
+                main: 'ej2-lists.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-excel-export',
+                location: '../../node_modules/@syncfusion/ej2-excel-export/dist/',
+                main: 'ej2-excel-export.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-popups',
+                location: '../../node_modules/@syncfusion/ej2-popups/dist/',
+                main: 'ej2-popups.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-charts',
+                location: '../../node_modules/@syncfusion/ej2-charts/dist/',
+                main: 'ej2-charts.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-circulargauge',
+                location: '../../node_modules/@syncfusion/ej2-circulargauge/dist/',
+                main: 'ej2-circulargauge.umd.min.js'
+            },
+             {
+                name: '@syncfusion/ej2-lineargauge',
+                location: '../../node_modules/@syncfusion/ej2-lineargauge/dist/',
+                main: 'ej2-lineargauge.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-svg-base',
+                location: '../../node_modules/@syncfusion/ej2-svg-base/dist/',
+                main: 'ej2-svg-base.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-dropdowns',
+                location: '../../node_modules/@syncfusion/ej2-dropdowns/dist/',
+                main: 'ej2-dropdowns.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-calendars',
+                location: '../../node_modules/@syncfusion/ej2-calendars/dist/',
+                main: 'ej2-calendars.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-buttons',
+                location: '../../node_modules/@syncfusion/ej2-buttons/dist/',
+                main: 'ej2-buttons.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-inputs',
+                location: '../../node_modules/@syncfusion/ej2-inputs/dist/',
+                main: 'ej2-inputs.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-grids',
+                location: '../../node_modules/@syncfusion/ej2-grids/dist/',
+                main: 'ej2-grids.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-pdf-export',
+                location: '../../node_modules/@syncfusion/ej2-pdf-export/dist/',
+                main: 'ej2-pdf-export.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-compression',
+                location: '../../node_modules/@syncfusion/ej2-compression/dist/',
+                main: 'ej2-compression.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-splitbuttons',
+                location: '../../node_modules/@syncfusion/ej2-splitbuttons/dist/',
+                main: 'ej2-splitbuttons.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-file-utils',
+                location: '../../node_modules/@syncfusion/ej2-file-utils/dist/',
+                main: 'ej2-file-utils.umd.min.js'
+            },
+            {
+                name: '@syncfusion/ej2-navigations',
+                location: '../../node_modules/@syncfusion/ej2-navigations/dist/',
+                main: 'ej2-navigations.umd.min.js'
+            }]
+        });
+       
+    </script>
+    
+    	<script src="https://cdn.jsdelivr.net/npm/underscore@1.11.0/underscore-min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<style>
+		/* .e-panel-content {
+        overflow: auto;
+    }*/
+
+		.padreCentrato {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			text-align: center;
+		}
+
+		.divCentrato {
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+		}
+
+		.e-panel-header div {
+			font-size: 20px;
+			margin-top: -6px;
+		}
+
+		/*#region Pannelli*/
+		.e-panel-header {
+			padding: 10px;
+			margin-bottom: 0;
+			background-color: rgba(0, 0, 0, .03);
+		}
+
+		.panel-content {
+			vertical-align: middle;
+			font-size: 15px;
+			font-size: 15px;
+			font-weight: 500;
+			color: rgba(0, 0, 0, 0.61);
+			text-align: center;
+		}
+
+		.e-panel-content {
+			height: calc(100% - 28px);
+			width: 100%;
+			display: block;
+			padding: 0px 5px 5px 5px;
+		}
+
+		.e-panel .e-header-text {
+			padding: 12px 0 12px 0;
+		}
+
+		.e-dashboardlayout.e-control .e-panel .e-panel-header {
+			font-size: 15px;
+			font-weight: 500;
+			height: 37px;
+			padding: 10px;
+			vertical-align: middle;
+			border-bottom: 0.5px solid #e3e3e3;
+		}
+
+		/*#endregion*/
+
+		/*Tolgo il padding alle col-lg per recuperare spazio*/
+		[class*='col-lg'] {
+			padding-left: 0px !important;
+			padding-right: 0px !important;
+		}
+
+		h1 {
+			margin: 0px !important;
+		}
+
+		.riquadro {
+			padding: 0px 0px 0px 5px !important;
+			margin-bottom: 0px !important;
+			margin-right: 5px !important;
+		}
+
+		/*https://www.syncfusion.com/support/directtrac/incidents/292627*/
+		.containerGraficoSF2,
+		.graficoSF2 {
+			height: 100% !important;
+		}
+
+		.row {
+			padding: 0px !important;
+			margin-right: 0px !important;
+			margin-left: 0px !important;
+		}
+
+		.e-chart {
+			width: inherit !important;
+			height: inherit !important;
+		}
+
+		.iconaFiltro:hover {
+			cursor: pointer;
+		}
+
+		#dialogFiltriVideoWall_title {
+			width: 100%;
+		}
+	</style>
+
+
+</head>
+
+<body>
+   <script id="panelToday" type="text/x-template">
+
+		<fieldset class="panelBorder riquadro" style="height: 25%; overflow: hidden;">
+        <legend class="legend4panel">allocated</legend>
+        <div id="graficoTodayAllocated"></div>
+    </fieldset>
+
+    <fieldset class="panelBorder riquadro" style="height: 25%; overflow: hidden;">
+        <legend class="legend4panel">"chargedToCust"</legend>
+        <div id="graficoChargedToCust"></div>
+    </fieldset>
+
+    <fieldset class="panelBorder riquadro" style="height: 50%;">
+        <legend class="legend4panel">???</legend>
+        <div style="width: 100%; height: 100%;">
+            <div id="graficoTodayResources" class="graficoSF2"></div>
+        </div>
+    </fieldset>
+
+</script>
+
+	<script id="panelUtilizationRate" type="text/x-template">
+
+		<fieldset class="panelBorder riquadro">
+        <legend class="legend4panel">currentValue</legend>
+        <div id="graficoUtilizationRate"></div>
+    </fieldset>
+
+    <div class="col-lg-6 ">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">pastYear</legend>
+            <h1 id="utilizatioRatePastText"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">delta</legend>
+            <h1 id="utilizatioRateGainText"></h1>
+        </fieldset>
+    </div>
+</script>
+
+	<script id="panelRevenuesTarget" type="text/x-template">
+
+		<div class="col-lg-2">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">YTD</legend>
+            <h1 id="revenuesTargetYTD" style="font-size: 50px; padding-top: 20px;"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-5">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">YTDvsDate</legend>
+            <div id="revenuesTargetYTDvsDate"></div>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-5">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">YTDvsPast</legend>
+            <div id="revenuesTargetYTDvsPast"></div>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-2">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"MTD")</legend>
+            <h1 id="revenuesTargetMTD" style="font-size: 50px; padding-top: 20px;"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-5">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">MTDvsDate</legend>
+            <div id="revenuesTargetMTDvsDate"></div>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-5">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"MTDvsPast")</legend>
+            <div id="revenuesTargetMTDvsPast"></div>
+        </fieldset>
+    </div>
+</script>
+
+	<script id="panelMarginDiscount" type="text/x-template">
+
+		<div class="row">
+        <div class="col-lg-6">
+            <fieldset class="panelBorder riquadro ">
+                <legend class="legend4panel">"labourMargin")</legend>
+                <div id="graficoMarginDiscountLM"></div>
+            </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"spMargin")</legend>
+                <div id="graficoMarginDiscountSPM"></div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"labourDiscount")</legend>
+                <div id="graficoMarginDiscountLD"></div>
+            </fieldset>
+        </div>
+
+        <div class="col-lg-6">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"spDiscount")</legend>
+                <div id="graficoMarginDiscountSPD"></div>
+            </fieldset>
+        </div>
+    </div>
+
+</script>
+
+	<script id="panelRevenues" type="text/x-template">
+		<fieldset class="panelBorder riquadro containerGraficoSF2">
+        <legend class="legend4panel">"revMonth")</legend>
+        <div style="width: 100%; height: 90%;">
+            <div id="graficoRevenues" class="graficoSF2"></div>
+        </div>
+    </fieldset>
+</script>
+
+	<script id="panelMarketing" type="text/x-template">
+		<div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"activeCamp")</legend>
+            <h1 id="marketingActCamp"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"potMachines")</legend>
+            <h1 id="marketingPotMac"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"quotations")</legend>
+            <h1 id="marketingQuotations"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"accepted")</legend>
+            <h1 id="marketingAccepted"></h1>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel"> "coverage")</legend>
+            <div id="graficoMarketingCoverage"></div>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6">
+        <fieldset class="panelBorder riquadro">
+            <legend class="legend4panel">"success")</legend>
+            <div id="graficoMarketingSuccess"></div>
+        </fieldset>
+    </div>
+</script>
+
+	<script id="panelKPI" type="text/x-template">
+
+		<div class="col-lg-6 containerGraficoSF2">
+        <fieldset class="panelBorder riquadro containerGraficoSF2">
+            <legend class="legend4panel">"anno")</legend>
+            <div style="width: 100%; height: 90%;">
+                <div id="graficoKPI_Anno" class="graficoSF2"></div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-6 containerGraficoSF2">
+        <fieldset class="panelBorder riquadro containerGraficoSF2">
+            <legend class="legend4panel">"mesi")</legend>
+            <div style="width: 100%; height: 90%;">
+                <div id="graficoKPI_Mesi" class="graficoSF2"></div>
+            </div>
+        </fieldset>
+    </div>
+
+</script>
+
+	<script id="panelSurvey" type="text/x-template">
+
+		<div class="col-lg-4">
+        <div class="col-lg-12">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"replies")</legend>
+                <h1 id="surveyReplies" style="font-size: 30px;"></h1>
+            </fieldset>
+        </div>
+
+        <div class="col-lg-12">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"posEval")</legend>
+                <h1 id="surveyPositive" style="font-size: 30px;"></h1>
+            </fieldset>
+        </div>
+
+        <div class="col-lg-12">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"negEval")</legend>
+                <h1 id="surveyNegative" style="font-size: 30px;"></h1>
+            </fieldset>
+        </div>
+
+        <div class="col-lg-12">
+            <fieldset class="panelBorder riquadro">
+                <legend class="legend4panel">"mehEval")</legend>
+                <h1 id="surveyMeh" style="font-size: 30px;"></h1>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="col-lg-8 containerGraficoSF2">
+        <fieldset class="panelBorder riquadro containerGraficoSF2">
+            <legend class="legend4panel">???</legend>
+            <div style="width: 100%; height: 90%;">
+                <div id="graficoSurvey" class="graficoSF2"></div>
+            </div>
+        </fieldset>
+    </div>
+</script>
+
+	<script id="panelCriticalCustomer" type="text/x-template">
+		<fieldset class="panelBorder riquadro containerGraficoSF2">
+        <legend class="legend4panel">???</legend>
+        <div style="width: 100%; height: 100%;">
+            <div id="graficoCriticalCust" class="graficoSF2"></div>
+        </div>
+    </fieldset>
+</script>
+
+	<!--#endregion-->
+
+
+
+	<div class="row">
+		<div id="videoWallCountriesLayout"></div>
+	</div>
+</body>
+<style>
+body{
+  height: 1200px;
+}
+    </style>
+</html>
