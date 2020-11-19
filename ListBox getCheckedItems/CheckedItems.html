@@ -31,8 +31,6 @@
         </div>
     </div>
   <script type="text/javascript">
-	var defaultColorPalette = ['#F67280', '#74B49B', '#F8B195', '#00A8B5', '#C06C84', '#FFCD60', '#606AFF', '#50E3C2', '#2D90CB', '#355C7D', '#F27507', '#8742D7', '#494CA2', '#CD4B87', '#447440'];
-	
 	$(function ()
 	{
 		var listBoxData = [
@@ -42,8 +40,7 @@
 		];
 		var data=[{ }, {}, {value1:0}
 		];
-
-						var isLoading = true;
+		var isLoading = true;
 
 		var datamanager = ej.DataManager({
                 //OData service
@@ -70,7 +67,7 @@
     
     function getcheck(args){
     	var lb=$("#container_listbox").ejListBox("instance");
-      console.log(lb.getCheckedItems());
+        console.log(lb.getCheckedItems());
     }
     </script>
 </body>
