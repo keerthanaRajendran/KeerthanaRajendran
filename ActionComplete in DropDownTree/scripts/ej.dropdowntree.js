@@ -1295,7 +1295,7 @@ var __extends = (this && this.__extends) || function (d, b) {
                 this.treeView._trigger('ready', args);
                 this.treeView.option({ ready: $.proxy(this.onTreeReady, this) });
             }
-		    var completeargs = { model: this.model, cancel: false, type: 'actionComplete', treedetails: args };
+            var completeargs = { model: this.model, cancel: false, type: 'actionComplete', treedetails: args };
             this._trigger('actionComplete', completeargs);
         };
         ejDropDownTree.prototype.onNodeCheckUncheck = function (args) {
