@@ -1,3 +1,5 @@
 module.exports = {
-  publicPath: '/DashboardLayout Vue sample/'
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/keerthanaRajendran/'
+    : '/'
 }

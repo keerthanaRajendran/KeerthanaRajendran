@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
     "test": "scripts",
-	 "deploy": "node scripts/gh-pages-deploy.js"
+    "deploy": "scripts/gh-pages-deploy.js"
   },
   "dependencies": {
     "@syncfusion/ej2-vue-buttons": "*",
@@ -34,6 +34,6 @@
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1",
-	 "execa": "latest"
+    "execa": "latest"
   }
 }
