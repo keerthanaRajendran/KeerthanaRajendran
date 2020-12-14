@@ -800,7 +800,7 @@
             }
             return updatedData;
         },
-        _addText: function (currentValue,isCheckAll) {
+        _addText: function (currentValue) {
 			 var inputVal;
              if (this._checkContains(this._hiddenValue)) return false;
 			 if(this.value())
@@ -812,10 +812,6 @@
             var ele = ["element", "_visibleInput"], val;
             for (var i = 0; i < ele.length; i++) {
             val = ele[i] == "element" ? this._hiddenValue : currentValue;
-			if (!this._isSingleSelect()&& JSON.stringify(this._boxValue) != JSON.stringify(this._valueContainer) && !isCheckAll)
-			{
-				this._boxValue = this._valueContainer;
-			}
 				var srcContainer = ele[i] == "element" ? this._valueContainer : this._textContainer;
                 if (this[ele[i]][0].value && this[ele[i]][0].value != "") {
                     var splitedText = this[ele[i]][0].value.split(this.model.delimiterChar);
@@ -2346,7 +2342,7 @@
                             this._ulBox.append(this._createBox(this._currentText,this._hiddenValue));
                             if (this._isPopupShown()) this._setListPosition();
                         }
-                        this._addText(this._currentText,true);
+                        this._addText(this._currentText);
                         if ($.inArray(i, _nodes) == -1) {
                             this._selectedIndices.push(i);
                             this.model.selectedItems = this.model.selectedIndices = this._selectedIndices;
