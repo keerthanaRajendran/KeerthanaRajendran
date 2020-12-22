@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Essential Studio for JavaScript : DropDownList - Multi Select Functionalities</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <link href="https://cdn.syncfusion.com/17.3.0.14/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+	<!--[if lt IE 9]>
+	<script src="../scripts/jquery-1.11.3.min.js" type="text/javascript" ></script> 
+	<![endif]-->
+	<!--[if IE 9]><!-->
+	<script src="scripts/jquery-3.1.1.min.js" type="text/javascript"> </script>
+	<!--<![endif]--> 
+	    <script src="scripts/ej.core.js" type="text/javascript"></script>
+	<script src="scripts/ej.checkbox.js" type="text/javascript"></script>
+    <script src="scripts/ej.data.js" type="text/javascript"></script>
+	<script src="scripts/ej.button.js" type="text/javascript"></script>
+	<script src="scripts/ej.globalize.js" type="text/javascript"></script>
+	<script src="scripts/trunk/ej.dropdowntree.js" type="text/javascript"></script> 
+	<script src="scripts/ej.dropdownlist.js" type="text/javascript"></script> 
+	<script src="scripts/ej.togglebutton.js" type="text/javascript"></script>
+    <script src="scripts/ej.radiobutton.js" type="text/javascript"></script> 	
+	<script src="scripts/ej.treeview.js" type="text/javascript"></script> 
+    <script src="scripts/ej.scroller.js" type="text/javascript"></script>	
+	<script src="scripts/ej.waitingpopup.js" type="text/javascript"></script>
+    <script src="https://jsplayground.syncfusion.com/15.3.0.26/scripts/web/properties.js" type="text/javascript"></script>
+	
+</head>
+<body>
+     <div class="content-container-fluid">
+        <div class="row">
+            <div class="cols-sample-area">
+                <div class="frame">
+                    <div class="control">
+					<div class="tree">
+					<h3>Remote Data</h3>
+                        <input type="text" id="treeList" />
+					</div>
+					<div class="tree">
+					 <h3>Local Data</h3>
+                        <input type="text" id="localList" />
+                    </div>
+					<div class="tree">
+					 <h3>TargetID render</h3>
+                        <input type="text" id="targetTree" />
+                    </div>
+					</div>
+                    </div>
+					   <div id="itemList">
+                            <ul id="treeView">
+                                <li class="expanded">
+                                    Artwork
+                                    <ul>
+                                        <li>
+                                            Abstract
+                                            <ul>
+                                                <li>2 Acrylic Mediums</li>
+                                                <li>Creative Acrylic</li>
+                                                <li>Modern Painting</li>
+                                                <li>Canvas Art</li>
+                                                <li>Black white</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Children
+                                            <ul>
+                                                <li>Preschool Crafts</li>
+                                                <li>School-age Crafts</li>
+                                                <li>Fabulous Toddler</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+
+            <div id="sampleProperties">
+                <div class="prop-grid">
+                    <div class="row">
+                        <div class="col-md-6">Disable\Enable</div>
+                        <div class="col-md-6">
+                            <input type="checkbox" id="btnchkunchk" class="e-togglebtn" />
+                        </div>
+                    </div>
+					 <div class="row">
+                        <div class="col-md-6">Check All </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" id="incrementalbutton" class="e-togglebtn"  />
+                        </div>
+                    </div>
+					 <div class="row">
+                        <div class="col-md-6">Enable Animation</div>
+                        <div class="col-md-6">
+                            <input type="checkbox" id="Animation" class="e-togglebtn"  />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Show\Hide Popup</div>
+                        <div class="col-md-6">
+                            <input type="checkbox" id="showhide" class="e-togglebtn" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">TextBox Value</div>
+                        <div class="col-md-6">
+                            <button id="gValue">Value</button>
+                        </div>
+                    </div>
+					<div class="row">
+                        <div class="col-md-6">Set Value</div>
+                        <div class="col-md-6">
+                            <button id="setValue">Set Value</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var tree1, tree2, tree3;
+        var localData = [
+                   { id: 1, name: "United States", hasChild: true, expanded: true },
+                   { id: 2, pid: 1, name: "California" },
+                   { id: 3, pid: 1, name: "Colorado" },
+                   { id: 4, pid: 1, name: "Georgia" },
+                   { id: 6, pid: 1, name: "New York" },
+                   { id: 7, name: "United Kingdom", hasChild: true, expanded: true },
+                   { id: 8, pid: 7, name: "England" },
+                   { id: 9, pid: 7, name: "Scotland" },
+                   { id: 10, pid: 7, name: "Northern Ireland" },
+                   { id: 11, name: "Asia", hasChild: true },
+                   { id: 12, pid: 11, name: "Afghanistan" },
+                   { id: 13, pid: 11, name: "Kuwait" },
+                   { id: 14, pid: 11, name: "Russia" },
+                   { id: 15, pid: 11, name: "China" }];
+				    var dataManger = ej.DataManager({
+            url: "https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/",
+            adaptor: new ej.ODataAdaptor(),
+            crossDomain: true
+        });
+            // Query creation
+            var query = ej.Query().from("Categories").select("CategoryID,CategoryName").take(3);
+        $(function () {
+            $('#treeList').ejDropDownTree({
+                treeViewSettings: {
+				   allowMultiSelection: true,
+				    fields: {
+                        dataSource: dataManger, query: query, id: "CategoryID", text: "CategoryName",
+                        child: { dataSource: dataManger, tableName: "Products", parentId: "CategoryID", text: "ProductName" }
+                    },
+					showCheckbox: true
+                },
+				 popupSettings: {
+                      //showPopupOnLoad: true, width: "300px",height:"400px"
+				},
+                watermarkText: "Please select",
+				loadOnDemand:true,
+				value: "Beverages",
+                width: "100%"
+            });
+			$("#localList").ejDropDownTree({
+                treeViewSettings: {
+                   fields: { id: "id", parentId: "pid", value: "name", text: "name", hasChild: "hasChild", dataSource: localData, expanded: "expanded" },
+				   showCheckbox: true
+                },
+				 popupSettings: {
+                      showPopupOnLoad: true, width: "300px",height:"400px"
+				},
+                watermarkText: "Please select",
+				 headerTemplate: '<div class="e-tree-header"><span>Header</span></div>',
+				footerTemplate: '<div class="e-tree-footer"> <span>End of list</span></div>',
+				loadOnDemand:true,
+				//value:"Colorado",
+                width: "100%"
+            });
+			 $('#targetTree').ejDropDownTree({
+                targetId: "itemList",
+				loadOnDemand:true,
+				treeViewSettings: {showCheckbox: true},
+				open:function(args)
+				{
+				$("#itemList").css("display","block");
+				}
+            });
+            tree1 = $("#treeList").data("ejDropDownTree");
+			tree2 = $("#localList").data("ejDropDownTree");
+			tree3 = $("#targetTree").data("ejDropDownTree");
+           
+            $("#btnchkunchk").ejToggleButton({ width: "107px", "change": "onCheckUncheckAll", "defaultText": "Disable", "activeText": "Enable" });
+            $("#incrementalbutton").ejToggleButton({ width: "107px", "change": "incrementalchange", "defaultText": "CheckAll", "activeText": "UncheckAll" });
+			$("#Animation").ejToggleButton({ width: "107px", "change": "onchange", "defaultText": "enableAnimation", "activeText": "enableAnimation" });
+            $("#showhide").ejToggleButton({ width: "107px", "change": "showChange", "defaultText": "Show", "activeText": "Hide" });
+            $("#gValue").ejButton({
+                showRoundedCorner: true,
+                width: "107px",
+                click: "onClick"
+            });
+			 $("#setValue").ejButton({
+                showRoundedCorner: true,
+                width: "107px",
+                click: "setClick"
+            });
+        });
+		
+        function onCheckUncheckAll(args) {
+            if(args.isChecked)
+{
+tree1.disable();
+tree2.disable();
+tree3.disable();
+}
+else
+{
+tree1.enable();
+tree2.enable();
+tree3.enable();   
+}
+        }
+        function incrementalchange(args) 
+        {
+            if(args.isChecked)
+			{
+tree1.checkAll();
+tree2.checkAll();
+tree3.checkAll();
+}
+else
+{
+tree1.unCheckAll();
+tree2.unCheckAll();
+tree3.unCheckAll();   
+}
+        }
+		 function onchange(args) 
+        {
+		 if(args.isChecked)
+			{
+tree1.option({"enableAnimation":true});
+tree2.option({"enableAnimation":true});
+tree3.option({"enableAnimation":true});
+}
+else
+{
+tree1.option({"enableAnimation":false});
+tree2.option({"enableAnimation":false});
+tree3.option({"enableAnimation":false});   
+}
+        }
+        function showChange(args) {
+            if (args.isChecked) {
+              if ($(tree1.popupListWrapper).css("display") == "none")
+                tree1.showPopup();
+				tree2.showPopup();
+				tree3.showPopup();
+            } else {
+                tree1.hidePopup();
+				tree2.hidePopup();
+				tree3.hidePopup();
+            }
+        }
+        function onClick(args) {
+	        alert(tree1.getValue());
+        }
+		function setClick(args){
+		
+		tree1.setModel({value:"Pavlova"});
+		tree2.setModel({value:"California"});
+		tree3.setModel({value:"Canvas Art"});
+		}
+        $("#sampleProperties").ejPropertiesPanel();
+    </script>
+	<style class="cssStyles">
+	.control{
+	  display:inline-flex;
+	}
+	.tree
+	{
+	 padding: 30px;
+	}
+	#itemList
+	{
+	display:none;
+	}
+	</style>
+	</body>
+</html>
